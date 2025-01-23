@@ -2,11 +2,11 @@ import json
 import numpy as np
 
 LEARNING = "active"
-IR = 16
-with open(f"scaled_no_weights/rbf_active_learning_IR{IR}.json", "r", encoding="utf-8") as json_file:
+IR = 256
+with open(f"one_positive_class/rbf_active_learning_IR{IR}.json", "r", encoding="utf-8") as json_file:
     active = json.load(json_file)
     
-with open(f"scaled_no_weights/rbf_passive_learning_IR{IR}.json", "r", encoding="utf-8") as json_file:
+with open(f"one_positive_class/rbf_passive_learning_IR{IR}.json", "r", encoding="utf-8") as json_file:
     passive = json.load(json_file)
     
     

@@ -81,3 +81,6 @@ def plot_comparison_roc_pr_gmean(active_file, passive_file, index):
     print("Active Learning: ", gmean_active)
 
     print("Passive Learning: ", gmean_passive)
+
+if __name__=="__main__":
+    plot_comparison_roc_pr_gmean("one_positive_class/rbf_active_learning_IR512.json", "one_positive_class/rbf_passive_learning_IR512.json", 50)
