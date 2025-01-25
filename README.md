@@ -1,32 +1,30 @@
 ---
 author:
-- |
-  \
-  Konrad Karpiuk, Miłosz Więcyk
-date: 2025
-title: "**Aktywne uczenie dla zestawu danych o niezbalansowanych klasach.**"
+- "Konrad Karpiuk, Miłosz Więcyk"
+date: "2025"
+title: "Aktywne uczenie dla zestawu danych o niezbalansowanych klasach"
 ---
 
-:::::::: titlepage
-::: center
-**Wydział Elektroniki i Technik Informacyjnych**\
-**Politechnika Warszawska**\
-:::
+<div style="page-break-after: always;"></div>
 
-::: center
-**Uczenie Maszynowe**
-:::
+<div align="center">
 
-::: center
-:::
+# Aktywne uczenie dla zestawu danych o niezbalansowanych klasach
 
-::: center
-:::
+**Wydział Elektroniki i Technik Informacyjnych**  
+**Politechnika Warszawska**  
 
-::: center
-**Warszawa, **
-:::
-::::::::
+<br>
+
+**Uczenie Maszynowe**  
+
+<br><br><br>
+
+**Warszawa, 2025**
+
+</div>
+
+<div style="page-break-after: always;"></div>
 
 # Wprowadzenie
 
@@ -57,7 +55,7 @@ Model, który wybrano do badań, to Support Vector Machine. Jest to algorytm, kt
 
 ## Przygotowanie danych
 
-Na podstawie danych utworzono obiekt typu DataFrame z bilbioteki pandas. Ze względu na to, że SVM wykorzystuje odległości w przestrzeni, niezwykle istotne jest, aby żaden wymiar nie posiadał znaczenie większych wartości od pozostałych, gdyż może to wprowadzić (po testach wiadomo nawet, że wprowadza) obciążenie modelu w kierunku tego wymiaru. Z tego powodu, zanim przystępiono do właściwego uczenia, ustandaryzowano dane z każdej kolumny wykorzysując narzędzie z biblioteki **sklearn** - **StandardScaler**. Odrzucono również kolumnę Time, ponieważ uznano, że nie jest to kluczowa cecha do poprawnego działania modelu. Operację zrealizowano przez kod w języku Python (listing [\[standardScaler\]](#standardScaler){reference-type="ref" reference="standardScaler"}).
+Na podstawie danych utworzono obiekt typu DataFrame z bilbioteki pandas. Ze względu na to, że SVM wykorzystuje odległości w przestrzeni, niezwykle istotne jest, aby żaden wymiar nie posiadał znaczenie większych wartości od pozostałych, gdyż może to wprowadzić (po testach wiadomo nawet, że wprowadza) obciążenie modelu w kierunku tego wymiaru. Z tego powodu, zanim przystępiono do właściwego uczenia, ustandaryzowano dane z każdej kolumny wykorzysując narzędzie z biblioteki **sklearn** - **StandardScaler**. Odrzucono również kolumnę Time, ponieważ uznano, że nie jest to kluczowa cecha do poprawnego działania modelu. Operację zrealizowano przez kod w języku Python.
 
 ``` {#standardScaler label="standardScaler" caption="Przygotowanie danych." style="python"}
 df = df.drop(columns="Time")
@@ -68,7 +66,7 @@ for col in df.columns:
     df[col] = scaler.fit_transform(df[[col]])
 ```
 
-Aby porównać oba podejścia do uczenia dla różnego współczynnika niezbalansowania klas (IR), wykorzystano metodę znaną jako **under sampling**, polegającą na losowym odrzucaniu instancji klasy większościowej, dopóki IR nie osiągnie wymaganego poziomu. Realizację tego zadania przedstawia listing [\[underSampler\]](#underSampler){reference-type="ref" reference="underSampler"}. Na koniec dokonano podziału na zbiór trenujący i testowy.
+Aby porównać oba podejścia do uczenia dla różnego współczynnika niezbalansowania klas (IR), wykorzystano metodę znaną jako **under sampling**, polegającą na losowym odrzucaniu instancji klasy większościowej, dopóki IR nie osiągnie wymaganego poziomu. Realizację tego zadania przedstawia listing. Na koniec dokonano podziału na zbiór trenujący i testowy.
 Zbiór trenujący zawiera pulę przykładów, z których model będzie mógł wybrać przykład do poetykietowania, a następnie dodać go do zbioru trenującego poetykietowanego, z którego może się uczyć.
 
 ``` {#underSampler label="underSampler" caption="Under sampling." style="python"}
